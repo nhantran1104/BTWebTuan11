@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{/admin/layout-admin.html}">
+<body>
+<section layout:fragment="content">
+    <h2 th:text="${category.isEdit ? 'Edit Category' : 'Add New Category'}"></h2>
+    <form action = "#" th:action="@{/admin/categories/save}" method="post">
+        <input type="hidden" th:value="${category.isEdit}" name="isEdit" />
+        <input type="hidden" th:value="${category.id}" name="id" />
+
+        <label>Category Name:</label> <br>
+        <input type="text" name="name" th:field="${category.name}" /> <br>
+
+        <label>Images</label> <br>
+        <input type="text" name="images" th:field="${category.images}" /> <br>
+
+        <label>Status</label> <br>
+        <input type="text" name="status" th:field="${category.status}" /> <br>
+
+        <div th:if="${category.isEdit}">
+            <input type="submit" value="Update">
+        </div>
+        <div th:if="${!category.isEdit}">
+            <input type="submit" value="Insert">
+        </div>
+    </form>
+</section>
+</body>
+</html>
